@@ -46,6 +46,18 @@ impl State {
     fn process(&mut self, message: Message) {
         // TODO: Create a match expression to process the different message
         // variants using the methods defined above.
+        match message {
+            Message::Resize { width, height } => self.resize(width, height),
+            Message::Move(point) => self.move_position(point),
+            Message::Echo(s) => self.echo(s),
+            Message::ChangeColor(red, green, blue) => self.change_color(red, green, blue),
+            Message::Quit => self.quit(),
+        }
+        // Note: The `self` keyword refers to the current instance of `State`.
+        // The `message` parameter is the message we want to process.
+        // The match expression will call the appropriate method based on the
+        // variant of the `Message` enum.
+        // Each method updates the state of the `State` instance accordingly.
     }
 }
 
