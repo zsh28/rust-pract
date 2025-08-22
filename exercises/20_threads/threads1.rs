@@ -4,7 +4,7 @@
 // return values into a vector.
 
 use std::{
-    thread,
+    thread::{self },
     time::{Duration, Instant},
 };
 
@@ -22,8 +22,10 @@ fn main() {
 
     let mut results = Vec::new();
     for handle in handles {
-        // TODO: Collect the results of all threads into the `results` vector.
+        // Collect the results of all threads into the `results` vector.
         // Use the `JoinHandle` struct which is returned by `thread::spawn`.
+        let res = handle.join().expect("Thread panicked");
+        results.push(res);
     }
 
     if results.len() != 10 {
